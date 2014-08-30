@@ -1,0 +1,16 @@
+{
+  "name": "todos",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ],
+  "dependencies": {
+    "jquery": "*",
+    "bootstrap-sass-official": "*",
+    "jquery-ui": "*",
+    "knockoutjs": "*",
+    "mustache": "*"
+  }
+}

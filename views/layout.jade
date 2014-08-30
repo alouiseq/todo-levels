@@ -1,0 +1,29 @@
+doctype html5
+html(lang='en')
+  head
+    title= title
+    meta(charset='utf-8')
+    link(rel='icon', href='publicTodos/img/todos.jpeg')
+    if settings.env === 'production'
+      link(rel='stylesheet', href='dist/styles/todos.min.css')
+    else 
+      //-<!-- build:css dist/styles/todos.min.css -->
+      link(rel='stylesheet', href='publicTodos/css/bootstrap.css')
+      link(rel='stylesheet', href='publicTodos/components/fancybox/jquery.fancybox.css')
+      link(rel='stylesheet', href='publicTodos/css/style.css')
+      //-<!-- endbuild -->
+      script(src='http://localhost:35729/livereload.js')
+  body
+    block content
+    if settings.env === 'production'
+      script(src='dist/scripts/todos.min.js')
+    else
+      //-<!-- build:js dist/scripts/todos.min.js -->
+      script(src='publicTodos/components/jquery/dist/jquery.min.js')
+      script(src='publicTodos/components/jquery-ui/jquery-ui.min.js')
+      script(src='publicTodos/components/jquery-ui/ui/minified/sortable.min.js')
+      script(src='publicTodos/components/knockoutjs/dist/knockout.js')
+      script(src='publicTodos/components/mustache/mustache.js')
+      script(src='publicTodos/components/fancybox/jquery.fancybox.pack.js')
+      script(src='publicTodos/js/todos.js')
+      //-<!-- endbuild -->

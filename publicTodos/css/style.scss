@@ -1,0 +1,105 @@
+// HTML5 elements for non-supported browsers 
+header, footer, section, article, aside, nav, hgroup {
+  display: block;
+}
+
+html {
+  position: relative;
+}
+
+.wrapper {
+  display: flex;
+  display: -webkit-flex;
+  display: -ms-flex;
+}
+
+// flex direction
+@mixin direction($dir) {
+  flex-direction: $dir;
+  -webkit-flex-direction: $dir;
+  -ms-flex-direction: $dir;
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    @include direction(column);
+  } 
+}
+
+// flex grow
+@mixin expand($ratio) {
+  flex-grow: $ratio;
+  -webkit-flex-grow: $ratio;
+  -ms-flex-grow: $ratio;
+}
+
+.list {
+  @include expand(1);
+  min-width: 50%;
+}
+
+body {
+  max-width: 1200px;
+  margin: 0px auto;
+  text-align: center;
+  padding: 0px 20px;
+}
+
+h1 {
+  font-family: cursive, sans-serif;
+  text-align: center;
+}
+
+.completed {
+  text-decoration: line-through;
+  -moz-text-decoration-color: red;
+}
+
+td:last-child {
+  text-align: right;
+}
+
+footer {
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  padding: 10px 0
+}
+
+footer {
+  div {
+    margin-left: -50%;
+  }
+}
+
+// Skills & Experience section
+.category, .skill {
+  display: -webkit-flex;
+  div, a {
+    border: 1px solid black;
+    padding: 10px;
+  }
+  .lg {
+    flex-basis: 200px;
+    flex-grow: 3;
+  }
+  .md {
+    flex-basis: 130px;
+    flex-grow: 2;
+  }
+  .sm {
+    flex-basis: 70px;
+    flex-grow: 1;
+  }
+}
+
+.category {
+  div {
+    background-color: FFFCCC;
+  }
+}
+
+textarea {
+  position: absolute;
+  left: 314px;
+}

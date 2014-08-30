@@ -1,0 +1,62 @@
+extends layout
+
+block prepend content
+  header(id="header")
+    h1= title
+    br
+  section(class="wrapper")
+    // Daily Tasks
+    div(id="table_daily", class="form-group list")
+      label(for="entry_daily") Daily Tasks 
+        span(data-bind="visible: table.daily_entries().length > 0, text: '(' + table.daily_entries().length  + ')'")
+      input(id="entry_daily", class="form-control", data-bind="value: entry_daily, event: { keyup: addCell.bind($data, 'daily') }, enable: table.daily_entries().length < '20'", autofocus, value, placeholder="What's there to do?")
+      table(class="table table-hover")
+        tbody(data-bind="foreach: { data: table.daily_entries, afterAdd: addSlideDown, beforeRemove: removeSlideUp }, sortableTable: table.daily_entries, term: 'daily'")
+          tr
+            td
+              div(class="glyphicon glyphicon-ok", data-bind="click: $parent.toggleStatus")
+            td
+              div(data-bind="css: status, text: entry, click: edit, visible: !selected()")
+              input(type="text", data-bind="value: entry, event: { keyup: editText }, visible: selected, hasFocus: selected")
+            td
+              div(class="glyphicon glyphicon-remove", data-bind="click: $parent.removeCell.bind($data, 'daily', $parent)")
+
+    // Project Tasks
+    div(id="table_proj", class="form-group list")
+      label(for="entry_proj") Projects 
+        span(data-bind="visible: table.project_entries().length > 0, text: '(' + table.project_entries().length + ')'")
+      input(id="entry_proj", class="form-control", data-bind="value: entry_project, event: { keyup: addCell.bind($data, 'project') }, enable: table.project_entries().length < '10'", autofocus, value, placeholder="What project do you have in mind?")
+      table(class="table table-hover")
+        tbody(data-bind="foreach: { data: table.project_entries, afterAdd: addSlideDown, beforeRemove: removeSlideUp }, sortableTable: table.project_entries, term: 'project'")
+          tr
+            td
+              div(class="glyphicon glyphicon-ok", data-bind="click: $parent.toggleStatus")
+            td
+              div(data-bind="css: status, text: entry, click: edit, visible: !selected()")
+              input(type="text", data-bind="value: entry, event: { keyup: editText }, visible: selected, hasFocus: selected")
+            td
+              div(class="glyphicon glyphicon-remove", data-bind="click: $parent.removeCell.bind($data, 'project', $parent)")
+  section
+    h1 Skills & Experience
+    h3 Front End Engineer
+    // Tableless items
+    div(class="rankingSystem", data-bind="foreach: skillSets")
+      div(class="category", data-bind="with: $data[0]")
+        div(class="md", data-bind="text: category")
+        div(class="lg") Recent
+        div(class="sm") EXP (of 1K)
+        div(class="sm") Level
+        div(class="md") Ranking
+      div(data-bind="foreach: $data")
+        div(class="skill")
+          div(class="md", data-bind="text: skill")
+          a(class="lg taskPopup", href="#recentTasks", title="Previous Tasks", data-bind="text: recent")
+          div(id="recentTasks", data-bind="html: taskList, visible: false")
+          div(class="sm", data-bind="text: exp")
+          div(class="sm", data-bind="text: level")
+          div(class="md", data-bind="text: ranking")
+
+  footer(id="footer")
+    div
+      &copy; Copyright Alouise Quiatchon
+
